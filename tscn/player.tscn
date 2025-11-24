@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://lk78o5klibua" path="res://gd/player.gd" id="1_7omxl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_60jg2"]
+radius = 41.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_7omxl")
@@ -14,5 +15,8 @@ texture = ExtResource("1_7j80i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_60jg2")
+disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="body" type="Node2D" parent="."]

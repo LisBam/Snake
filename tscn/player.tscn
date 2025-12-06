@@ -17,6 +17,7 @@ texture = ExtResource("1_7j80i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_60jg2")
+disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

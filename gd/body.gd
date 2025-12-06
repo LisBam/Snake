@@ -1,22 +1,26 @@
 extends CharacterBody2D
 
 var leader: Node2D
-@export var follow_distance: float = 20.0  # 跟随距离
-@export var follow_speed: float = 500.0    # 跟随速度
+@export var follow_distance: float = 40.0
+@export var speed: float = 500.0
+
+var is_dash:bool = false
+var dash_mul:float = 1.8
 
 func _physics_process(delta):
 	if leader == null:
 		printerr("no leader!!!!")
 		return
-	
-	# 计算指向领导者的方向
+
 	var direction = (leader.global_position - global_position).normalized()
 	
-	# 如果距离太远，就靠近
 	var distance = global_position.distance_to(leader.global_position)
 	
 	if distance > follow_distance:
-		velocity = direction * follow_speed
+		if is_dash:
+			velocity = direction * speed * dash_mul
+		else:
+			velocity = direction * speed
 	else:
 		velocity = Vector2.ZERO
 	

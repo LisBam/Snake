@@ -20,6 +20,10 @@ run/size/mode=2
 
 window/size/mode=2
 
+[global_group]
+
+food=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

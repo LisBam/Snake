@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bipkqchcurnmt"]
+[gd_scene load_steps=7 format=3 uid="uid://bipkqchcurnmt"]
 
 [ext_resource type="Script" uid="uid://blnlqkiia7kvq" path="res://gd/map.gd" id="1_3ebdm"]
 [ext_resource type="Texture2D" uid="uid://3cw2k355aprd" path="res://res/png/background.png" id="2_3ebdm"]
+[ext_resource type="PackedScene" uid="uid://dgyvax8xa170n" path="res://tscn/food.tscn" id="2_oeqvb"]
+[ext_resource type="Script" uid="uid://dld1kpok00y1o" path="res://gd/pauser.gd" id="4_yx4x3"]
+[ext_resource type="AudioStream" uid="uid://d26plk1gkdut2" path="res://res/MP3/游戏 休闲世界 by 晗Studio-完整版.mp3" id="5_x0n1c"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3ebdm"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_3ebdm")
+food_scene = ExtResource("2_oeqvb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3ebdm")
@@ -33,3 +37,26 @@ shape = SubResource("WorldBoundaryShape2D_3ebdm")
 position = Vector2(-5000, 0)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_3ebdm")
+
+[node name="pauser" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("4_yx4x3")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_x0n1c")
+autoplay = true
+parameters/looping = true
+
+[node name="pauseUI" type="Node" parent="."]
+
+[node name="black" type="ColorRect" parent="pauseUI"]
+visible = false
+light_mask = 1023
+visibility_layer = 1023
+z_index = 10
+offset_left = -17090.0
+offset_top = -12857.0
+offset_right = 15990.0
+offset_bottom = 12697.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 0.36078432)

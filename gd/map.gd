@@ -4,24 +4,29 @@ var enemy_scene = load("uid://ckwuwc7b26dbb")
 var player = player_scene.instantiate()
 
 @export var food_scene: PackedScene  # 拖拽食物场景到这里
-@export var max_food = 200            # 最多同时存在的食物数量
-@export var spawn_interval = 2.0    # 补充食物的间隔（秒）
+@export var max_food = 220            # 最多同时存在的食物数量
+@export var spawn_interval = 0.05    # 补充食物的间隔（秒）
 
 var food_list = []  # 存储所有食物节点
 var timer = 0.0     # 生成食物的计时器
 
+var max_enemy:int = 10
+var curr_enemy_count:int
+
 func _ready() -> void:
-	pass
 	add_child(player)
 	spawn_initial_food()
-	spawn_enemy()
-	spawn_enemy()
-	spawn_enemy()
-	spawn_enemy()
-	spawn_enemy()
+	for i in range(max_enemy):
+		spawn_enemy()
+	curr_enemy_count = max_enemy
 	
 func _physics_process(delta):
-	# 检查食物数量，不足则计时补充
+	if curr_enemy_count < max_enemy:
+		print("curr_enemy is ",curr_enemy_count)
+		print("max_enemy is ",max_enemy)
+		spawn_enemy()
+		curr_enemy_count += 1
+	
 	if food_list.size() < max_food:
 		timer += delta
 		if timer >= spawn_interval:
@@ -48,11 +53,30 @@ func spawn_one_food():
 			randf_range(-4950, 4950)
 		)
 		# 检查是否与玩家重合（距离大于50则合法）
-		if new_food.position.distance_to(player.position) > 100:
+		if new_food.position.distance_to(player.position) > 50:
 			valid_pos = true
 	
 	add_child(new_food)
 	food_list.append(new_food)
+	new_food.tree_exiting.connect(func():
+		if new_food in food_list:
+			food_list.erase(new_food)
+	)
+	
+func spawn_food_at_point(point_position:Vector2):
+	var new_food = food_scene.instantiate()
+	
+	# 定义随机偏差范围
+	var random_offset_range = 5.0
+	# 生成X和Y轴的随机偏差
+	var random_x = randf_range(-random_offset_range, random_offset_range)
+	var random_y = randf_range(-random_offset_range, random_offset_range)
+	
+	# 应用随机偏差到目标位置
+	new_food.position = point_position + Vector2(random_x, random_y)
+	
+	add_child(new_food)
+	#food_list.append(new_food)
 	new_food.tree_exiting.connect(func():
 		if new_food in food_list:
 			food_list.erase(new_food)
@@ -68,7 +92,7 @@ func spawn_enemy():
 			randf_range(-4950, 4950),
 			randf_range(-4950, 4950)
 		)
-		if new_enemy.position.distance_to(player.position) > 300:
+		if new_enemy.position.distance_to(player.position) > 1000:
 			valid_pos = true
 	
 	add_child(new_enemy)

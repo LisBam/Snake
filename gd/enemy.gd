@@ -104,3 +104,7 @@ func add_body(count:int):
 	super.add_body(count)
 	
 	add_to_group("enemy")
+	for body in bodys:
+		for area2d in body.get_children():
+			if area2d is Area2D:
+				area2d.add_to_group("enemy")

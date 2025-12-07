@@ -17,23 +17,23 @@ texture = ExtResource("2_3ebdm")
 
 [node name="wall" type="Node" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="wall"]
+[node name="StaticBody2D" type="StaticBody2D" parent="wall" groups=["wall"]]
 
-[node name="down" type="CollisionShape2D" parent="wall/StaticBody2D"]
+[node name="down" type="CollisionShape2D" parent="wall/StaticBody2D" groups=["wall"]]
 position = Vector2(0, 5000)
 shape = SubResource("WorldBoundaryShape2D_3ebdm")
 
-[node name="up" type="CollisionShape2D" parent="wall/StaticBody2D"]
+[node name="up" type="CollisionShape2D" parent="wall/StaticBody2D" groups=["wall"]]
 position = Vector2(0, -5000)
 rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_3ebdm")
 
-[node name="right" type="CollisionShape2D" parent="wall/StaticBody2D"]
+[node name="right" type="CollisionShape2D" parent="wall/StaticBody2D" groups=["wall"]]
 position = Vector2(5000, 0)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_3ebdm")
 
-[node name="left" type="CollisionShape2D" parent="wall/StaticBody2D"]
+[node name="left" type="CollisionShape2D" parent="wall/StaticBody2D" groups=["wall"]]
 position = Vector2(-5000, 0)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_3ebdm")

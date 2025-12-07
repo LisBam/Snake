@@ -23,6 +23,9 @@ window/size/mode=2
 [global_group]
 
 food=""
+wall=""
+enemy=""
+player=""
 
 [rendering]
 

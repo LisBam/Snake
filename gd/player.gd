@@ -16,3 +16,8 @@ func _physics_process(delta):
 		dash()
 	else:
 		undash()
+
+func add_body(count:int):
+	super.add_body(count)
+	
+	add_to_group("player")

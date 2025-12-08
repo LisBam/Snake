@@ -6,8 +6,9 @@ var dir_timer: float = 0.0  # 方向切换计时器
 
 var view_distance: float = 600.0  # 视野距离
 var avoidance_distance: float = 200.0  # 避障距离
-var wall_avoidance_strength: float = 5.0  # 避开墙壁的强度
+var wall_avoidance_strength: float = 2.0  # 避开墙壁的强度
 var snake_avoidance_strength: float = 1.5  # 避开其他蛇的强度
+
 
 # 新增目标锁定变量
 var current_target: Node2D = null  # 当前锁定的食物目标

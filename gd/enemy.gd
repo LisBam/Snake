@@ -6,8 +6,8 @@ var dir_timer: float = 0.0  # 方向切换计时器
 
 var view_distance: float = 600.0  # 视野距离
 var avoidance_distance: float = 200.0  # 避障距离
-var wall_avoidance_strength: float = 2.0  # 避开墙壁的强度
-var snake_avoidance_strength: float = 0.15  # 避开其他蛇的强度
+var wall_avoidance_strength: float = 5.0  # 避开墙壁的强度
+var snake_avoidance_strength: float = 1.5  # 避开其他蛇的强度
 
 # 新增目标锁定变量
 var current_target: Node2D = null  # 当前锁定的食物目标
@@ -82,7 +82,7 @@ func get_foods_in_view() -> Array:
 func get_snakes_in_view() -> Array:
 	var snakes_in_view = []
 	# 收集所有蛇（玩家和敌人）
-	var all_snakes = get_tree().get_nodes_in_group("player") + get_tree().get_nodes_in_group("enemies")
+	var all_snakes = get_tree().get_nodes_in_group("player") + get_tree().get_nodes_in_group("enemy")
 	for snake in all_snakes:
 		if not is_instance_valid(snake): continue
 		var dist = global_position.distance_to(snake.global_position)

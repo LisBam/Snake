@@ -3,6 +3,8 @@ extends Snale_base
 func _physics_process(delta):
 	super._physics_process(delta)
 	
+	auto_adjust_zoom()
+	
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - global_position).normalized()
 	
@@ -29,3 +31,8 @@ func add_body(count:int):
 func die():
 	super.die()
 	get_tree().paused = true
+
+func auto_adjust_zoom():
+	var zoom_x = 1.0 - clamp((score - 200.0) / (2000.0 - 200.0), 0.0, 1.0) * 0.5
+	var zoom_y = zoom_x
+	$Camera2D.zoom=Vector2(zoom_x,zoom_y)

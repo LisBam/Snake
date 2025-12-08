@@ -37,9 +37,8 @@ func _area_entered(area: Area2D) -> void:
 			
 	if(area.is_in_group("wall")):
 		die()
-	if(not is_player and (area.is_in_group("player") or area.is_in_group("enemy"))):
-		pass
-		#die()
+	if(not is_player and (area.is_in_group("player"))):
+		die()
 	if(is_player and area.is_in_group("enemy")):
 		die()
 

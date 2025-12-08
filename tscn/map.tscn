@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bipkqchcurnmt"]
+[gd_scene load_steps=10 format=3 uid="uid://bipkqchcurnmt"]
 
 [ext_resource type="Script" uid="uid://blnlqkiia7kvq" path="res://gd/map.gd" id="1_3ebdm"]
 [ext_resource type="Texture2D" uid="uid://3cw2k355aprd" path="res://res/png/background.png" id="2_3ebdm"]
 [ext_resource type="PackedScene" uid="uid://dgyvax8xa170n" path="res://tscn/food.tscn" id="2_oeqvb"]
 [ext_resource type="Script" uid="uid://dld1kpok00y1o" path="res://gd/pauser.gd" id="4_yx4x3"]
 [ext_resource type="AudioStream" uid="uid://d26plk1gkdut2" path="res://res/MP3/游戏 休闲世界 by 晗Studio-完整版.mp3" id="5_x0n1c"]
+[ext_resource type="Texture2D" uid="uid://ua11uc6wmey8" path="res://res/ui/选项nomal.png" id="6_bhkyt"]
+[ext_resource type="Texture2D" uid="uid://5l4eo5owe544" path="res://res/ui/选项press.png" id="7_ghqhn"]
+[ext_resource type="Texture2D" uid="uid://cvceut6n3k7e2" path="res://res/ui/选项hover.png" id="8_r7qdg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3ebdm"]
 
@@ -49,6 +52,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="pauseUI" type="Node" parent="."]
+process_mode = 3
 
 [node name="black" type="ColorRect" parent="pauseUI"]
 visible = false
@@ -60,3 +64,72 @@ offset_top = -12857.0
 offset_right = 15990.0
 offset_bottom = 12697.0
 color = Color(0.13333334, 0.13333334, 0.13333334, 0.36078432)
+
+[node name="pauseUI" type="CanvasLayer" parent="pauseUI"]
+
+[node name="Control" type="Control" parent="pauseUI/pauseUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="continue" type="TextureButton" parent="pauseUI/pauseUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.49400002
+anchor_right = 0.5
+anchor_bottom = 0.49400002
+offset_left = -320.0
+offset_top = -252.112
+offset_right = 320.0
+offset_bottom = -148.112
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_bhkyt")
+texture_pressed = ExtResource("7_ghqhn")
+texture_hover = ExtResource("8_r7qdg")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="replay" type="TextureButton" parent="pauseUI/pauseUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.49400002
+anchor_right = 0.5
+anchor_bottom = 0.49400002
+offset_left = -320.0
+offset_top = -52.112
+offset_right = 320.0
+offset_bottom = 51.888
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_bhkyt")
+texture_pressed = ExtResource("7_ghqhn")
+texture_hover = ExtResource("8_r7qdg")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="out" type="TextureButton" parent="pauseUI/pauseUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.49400002
+anchor_right = 0.5
+anchor_bottom = 0.49400002
+offset_left = -320.0
+offset_top = 147.888
+offset_right = 320.0
+offset_bottom = 251.888
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_bhkyt")
+texture_pressed = ExtResource("7_ghqhn")
+texture_hover = ExtResource("8_r7qdg")
+ignore_texture_size = true
+stretch_mode = 6
+
+[connection signal="button_up" from="pauseUI/pauseUI/Control/continue" to="pauser" method="_on_continue_button_up"]

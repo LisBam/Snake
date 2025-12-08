@@ -7,7 +7,7 @@ var dir_timer: float = 0.0  # 方向切换计时器
 var view_distance: float = 600.0  # 视野距离
 var avoidance_distance: float = 200.0  # 避障距离
 var wall_avoidance_strength: float = 2.0  # 避开墙壁的强度
-var snake_avoidance_strength: float = 1.5  # 避开其他蛇的强度
+var snake_avoidance_strength: float = 0.15  # 避开其他蛇的强度
 
 # 新增目标锁定变量
 var current_target: Node2D = null  # 当前锁定的食物目标
@@ -29,7 +29,7 @@ func _physics_process(delta):
 	if !current_target or !is_instance_valid(current_target) or target_lock_time >= min_lock_time:
 		if foods.size() > 0:
 			current_target = foods[randi() % foods.size()]  # 随机选择一个新目标
-			target_lock_time = 0.0  # 重置锁定时间
+			target_lock_time = 0.0
 		else:
 			current_target = null
 	

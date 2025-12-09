@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbttwvffb8o36"]
+[gd_scene load_steps=7 format=3 uid="uid://dbttwvffb8o36"]
 
 [ext_resource type="Texture2D" uid="uid://b3simrhik2knt" path="res://res/png/player_head.png" id="1_7j80i"]
 [ext_resource type="Script" uid="uid://lk78o5klibua" path="res://gd/player.gd" id="1_7omxl"]
 [ext_resource type="AudioStream" uid="uid://18sfgbnfm4t5" path="res://res/MP3/拾取.mp3" id="3_3c7ea"]
+[ext_resource type="FontFile" uid="uid://fu8ok55l78br" path="res://res/Uranus_Pixel_11Px.ttf" id="4_u4c7w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_60jg2"]
 radius = 42.0
@@ -51,5 +52,37 @@ shape = SubResource("CircleShape2D_3c7ea")
 
 [node name="pick" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("3_3c7ea")
+
+[node name="die_ui" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="Label" type="Label" parent="die_ui"]
+z_index = 11
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_u4c7w")
+theme_override_font_sizes/font_size = 512
+text = "5"
+
+[node name="die_black" type="ColorRect" parent="die_ui"]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 10
+offset_left = -17090.0
+offset_top = -12857.0
+offset_right = 15990.0
+offset_bottom = 12697.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 0.36078432)
 
 [connection signal="area_entered" from="Area2D" to="." method="_area_entered"]

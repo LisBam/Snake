@@ -2,13 +2,14 @@ class_name Snale_base extends CharacterBody2D
 
 @export var base_speed = 500.0
 @export var speed = base_speed
-@export var body_count : int = 4
-@export var score:int = 200
+@export var body_count : int = 5
+@export var score:int = 250
 @export var is_player:bool = true
 
 var is_dash:bool = false
 var dash_mul:float = 1.8
 var is_die:bool = false
+var is_dying:bool = false
 
 const body_scene = preload("uid://co7ngk5h1j3c6")
 var bodys: Array[CharacterBody2D] = []
@@ -35,12 +36,13 @@ func _area_entered(area: Area2D) -> void:
 		if $audio/pick:
 			$audio/pick.play()
 			
-	if(area.is_in_group("wall")):
-		die()
-	if(not is_player and (area.is_in_group("player"))):
-		die()
-	if(is_player and area.is_in_group("enemy")):
-		die()
+	if (is_player and not is_dying) or not is_player:
+		if(area.is_in_group("wall")):
+			die()
+		if(not is_player and (area.is_in_group("player"))):
+			die()
+		if(is_player and area.is_in_group("enemy")):
+			die()
 
 func add_body(count:int):
 	print("func add_body with ",count)
@@ -83,8 +85,9 @@ func undash():
 		i.is_dash = false
 
 func die():
-	is_die = true
-	get_tree().current_scene.curr_enemy_count -= 1
+	if not is_player:
+		is_die = true
+		get_tree().current_scene.curr_enemy_count -= 1
 	
 	var snake_positions = []
 	
@@ -100,22 +103,17 @@ func die():
 	if is_player:
 		for child in get_children():
 			if child is Sprite2D:
-				child.queue_free()
+				child.visible = false
 	else:
 		queue_free()
 	
 	var map = get_tree().current_scene
 	if map:
-		# 遍历蛇的所有位置，生成连续的食物线
 		for i in range(snake_positions.size()):
-			# 生成当前位置的食物
 			map.spawn_food_at_point(snake_positions[i])
 			
-			# 如果不是最后一个位置，在当前位置和下一个位置之间生成中间食物
 			if i < snake_positions.size() - 1:
 				var current_pos = snake_positions[i]
 				var next_pos = snake_positions[i + 1]
-				# 计算两个位置的中点
 				var mid_pos = (current_pos + next_pos) / 2
-				# 生成中间位置的食物
 				map.spawn_food_at_point(mid_pos)

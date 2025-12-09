@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bipkqchcurnmt"]
+[gd_scene load_steps=11 format=3 uid="uid://bipkqchcurnmt"]
 
 [ext_resource type="Script" uid="uid://blnlqkiia7kvq" path="res://gd/map.gd" id="1_3ebdm"]
 [ext_resource type="Texture2D" uid="uid://3cw2k355aprd" path="res://res/png/background.png" id="2_3ebdm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ua11uc6wmey8" path="res://res/ui/选项nomal.png" id="6_bhkyt"]
 [ext_resource type="Texture2D" uid="uid://5l4eo5owe544" path="res://res/ui/选项press.png" id="7_ghqhn"]
 [ext_resource type="Texture2D" uid="uid://cvceut6n3k7e2" path="res://res/ui/选项hover.png" id="8_r7qdg"]
+[ext_resource type="FontFile" uid="uid://fu8ok55l78br" path="res://res/Uranus_Pixel_11Px.ttf" id="9_ghqhn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3ebdm"]
 
@@ -52,7 +53,6 @@ autoplay = true
 parameters/looping = true
 
 [node name="pauseUI" type="Node" parent="."]
-process_mode = 3
 
 [node name="black" type="ColorRect" parent="pauseUI"]
 visible = false
@@ -66,6 +66,8 @@ offset_bottom = 12697.0
 color = Color(0.13333334, 0.13333334, 0.13333334, 0.36078432)
 
 [node name="pauseUI" type="CanvasLayer" parent="pauseUI"]
+process_mode = 3
+visible = false
 
 [node name="Control" type="Control" parent="pauseUI/pauseUI"]
 layout_mode = 3
@@ -94,6 +96,25 @@ texture_hover = ExtResource("8_r7qdg")
 ignore_texture_size = true
 stretch_mode = 6
 
+[node name="Label" type="Label" parent="pauseUI/pauseUI/Control/continue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = -32.5
+offset_right = 139.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.24632901, 0.24632901, 0.24632901, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_ghqhn")
+theme_override_font_sizes/font_size = 60
+text = "继 续 游 戏"
+
 [node name="replay" type="TextureButton" parent="pauseUI/pauseUI/Control"]
 layout_mode = 1
 anchors_preset = -1
@@ -112,6 +133,25 @@ texture_pressed = ExtResource("7_ghqhn")
 texture_hover = ExtResource("8_r7qdg")
 ignore_texture_size = true
 stretch_mode = 6
+
+[node name="Label" type="Label" parent="pauseUI/pauseUI/Control/replay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = -32.5
+offset_right = 139.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.24632901, 0.24632901, 0.24632901, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_ghqhn")
+theme_override_font_sizes/font_size = 60
+text = "重 新 开 始"
 
 [node name="out" type="TextureButton" parent="pauseUI/pauseUI/Control"]
 layout_mode = 1
@@ -132,4 +172,25 @@ texture_hover = ExtResource("8_r7qdg")
 ignore_texture_size = true
 stretch_mode = 6
 
+[node name="Label" type="Label" parent="pauseUI/pauseUI/Control/out"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = -32.5
+offset_right = 139.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.24632901, 0.24632901, 0.24632901, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_ghqhn")
+theme_override_font_sizes/font_size = 60
+text = "退 出 游 戏"
+
 [connection signal="button_up" from="pauseUI/pauseUI/Control/continue" to="pauser" method="_on_continue_button_up"]
+[connection signal="button_up" from="pauseUI/pauseUI/Control/replay" to="pauser" method="_on_replay_button_up"]
+[connection signal="button_up" from="pauseUI/pauseUI/Control/out" to="pauser" method="_on_out_button_up"]

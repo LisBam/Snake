@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 run/size/mode=2
 
+[autoload]
+
+SaveLoad="*res://gd/SaveLoad.gd"
+
 [display]
 
 window/size/mode=2

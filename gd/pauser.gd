@@ -21,3 +21,9 @@ func _on_replay_button_up() -> void:
 
 func _on_out_button_up() -> void:
 	get_tree().quit()
+
+
+func _on_clear_score_button_up() -> void:
+	SaveLoad.max_scores = 0
+	SaveLoad._save()
+	get_tree().current_scene.get_node("pauseUI/pauseUI2/score2").text = "历史最高分数:" + str(SaveLoad.max_scores)

@@ -14,6 +14,8 @@ var max_enemy:int = 6
 var curr_enemy_count:int
 
 func _ready() -> void:
+	SaveLoad._load()
+	$pauseUI/pauseUI2/score2.text = "历史最高分数:" + str(SaveLoad.max_scores)
 	add_child(player)
 	spawn_initial_food()
 	for i in range(max_enemy):

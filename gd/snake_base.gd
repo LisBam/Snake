@@ -2,8 +2,8 @@ class_name Snale_base extends CharacterBody2D
 
 @export var base_speed = 500.0
 @export var speed = base_speed
-@export var body_count : int = 5
-@export var score:int = 250
+@export var body_count : int = 4
+@export var score:int = 200
 @export var is_player:bool = true
 
 var is_dash:bool = false

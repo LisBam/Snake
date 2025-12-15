@@ -85,9 +85,9 @@ anchor_top = 0.49400002
 anchor_right = 0.5
 anchor_bottom = 0.49400002
 offset_left = -320.0
-offset_top = -252.112
+offset_top = -332.112
 offset_right = 320.0
-offset_bottom = -148.112
+offset_bottom = -228.112
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_bhkyt")
@@ -123,9 +123,9 @@ anchor_top = 0.49400002
 anchor_right = 0.5
 anchor_bottom = 0.49400002
 offset_left = -320.0
-offset_top = -52.112
+offset_top = -132.112
 offset_right = 320.0
-offset_bottom = 51.888
+offset_bottom = -28.112
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_bhkyt")
@@ -153,6 +153,44 @@ theme_override_fonts/font = ExtResource("9_ghqhn")
 theme_override_font_sizes/font_size = 60
 text = "重 新 开 始"
 
+[node name="clear_score" type="TextureButton" parent="pauseUI/pauseUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.49400002
+anchor_right = 0.5
+anchor_bottom = 0.49400002
+offset_left = -320.0
+offset_top = 67.888
+offset_right = 320.0
+offset_bottom = 171.888
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_bhkyt")
+texture_pressed = ExtResource("7_ghqhn")
+texture_hover = ExtResource("8_r7qdg")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="pauseUI/pauseUI/Control/clear_score"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = -32.5
+offset_right = 139.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.24632901, 0.24632901, 0.24632901, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_ghqhn")
+theme_override_font_sizes/font_size = 60
+text = "重 置 记 录"
+
 [node name="out" type="TextureButton" parent="pauseUI/pauseUI/Control"]
 layout_mode = 1
 anchors_preset = -1
@@ -161,9 +199,9 @@ anchor_top = 0.49400002
 anchor_right = 0.5
 anchor_bottom = 0.49400002
 offset_left = -320.0
-offset_top = 147.888
+offset_top = 267.888
 offset_right = 320.0
-offset_bottom = 251.888
+offset_bottom = 371.888
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_bhkyt")
@@ -191,6 +229,34 @@ theme_override_fonts/font = ExtResource("9_ghqhn")
 theme_override_font_sizes/font_size = 60
 text = "退 出 游 戏"
 
+[node name="pauseUI2" type="CanvasLayer" parent="pauseUI"]
+process_mode = 3
+
+[node name="score" type="Label" parent="pauseUI/pauseUI2"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 304.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0.8419588, 0.8419588, 0.84195876, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("9_ghqhn")
+theme_override_font_sizes/font_size = 60
+text = "分数："
+
+[node name="score2" type="Label" parent="pauseUI/pauseUI2"]
+offset_left = 25.0
+offset_top = 1400.0
+offset_right = 445.0
+offset_bottom = 1465.0
+theme_override_colors/font_color = Color(0.8419588, 0.8419588, 0.84195876, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("9_ghqhn")
+theme_override_font_sizes/font_size = 60
+text = "历史最高分数:"
+
 [connection signal="button_up" from="pauseUI/pauseUI/Control/continue" to="pauser" method="_on_continue_button_up"]
 [connection signal="button_up" from="pauseUI/pauseUI/Control/replay" to="pauser" method="_on_replay_button_up"]
+[connection signal="button_up" from="pauseUI/pauseUI/Control/clear_score" to="pauser" method="_on_clear_score_button_up"]
 [connection signal="button_up" from="pauseUI/pauseUI/Control/out" to="pauser" method="_on_out_button_up"]

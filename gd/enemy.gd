@@ -25,7 +25,7 @@ func _physics_process(delta):
 	
 	if !current_target or !is_instance_valid(current_target) or target_lock_time >= min_lock_time:
 		if foods.size() > 0:
-			current_target = foods[randi() % foods.size()]  # 随机选择一个新目标
+			current_target = foods[randi() % foods.size()]
 			target_lock_time = 0.0
 		else:
 			current_target = null

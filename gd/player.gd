@@ -21,6 +21,8 @@ func _physics_process(delta):
 			dash()
 		else:
 			undash()
+			
+		get_tree().current_scene.get_node("pauseUI/pauseUI2/score").text = "分数:"+str(score)
 
 func add_body(count:int):
 	super.add_body(count)
@@ -32,11 +34,18 @@ func add_body(count:int):
 				area2d.add_to_group("player")
 
 func die():
+	if score > SaveLoad.max_scores:
+		SaveLoad.max_scores = score
+		SaveLoad._save()
+	
 	super.die()
 	$die_ui.visible = true
 	is_dying = true
 	begin_time_to_respawn(5)
 	score = 0
+	
+	SaveLoad._load()
+	get_tree().current_scene.get_node("pauseUI/pauseUI2/score2").text = "历史最高分数:" + str(SaveLoad.max_scores)
 
 func auto_adjust_zoom():
 	var zoom_x = 1.0 - clamp((score - 200.0) / (2000.0 - 200.0), 0.0, 1.0) * 0.5
